@@ -44,7 +44,7 @@ export default function signin() {
         <p className="my-2">
           You don't have an account?
           <Link href="/register">
-            <span style={{ color: "crimson" }}>Register</span>
+            <span style={{ color: "crimson" }}>Register Now</span>
           </Link>
         </p>
       </form>
