@@ -15,6 +15,7 @@ export default function signin() {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            placeholder="Email"
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -26,6 +27,7 @@ export default function signin() {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            placeholder="Password"
           />
         </div>
         <div className="form-group form-check">
