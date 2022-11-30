@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import valid from "../utils/valid";
 
 export default function register() {
   const initialState = {
@@ -19,7 +20,8 @@ export default function register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
+    const errMsg = valid(name, email, password, confirm_password);
+    if (errMsg) console.log(errMsg);
   };
   return (
     <div>
