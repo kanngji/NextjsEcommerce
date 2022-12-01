@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
 import valid from "../utils/valid";
+import { DataContext } from "../store/GlobalState";
+import { postData } from "../utils/fetchData";
 
 export default function register() {
   const initialState = {
@@ -13,15 +16,24 @@ export default function register() {
   const [userData, setUserDate] = useState(initialState);
   const { name, email, password, confirm_password } = userData;
 
+  const [state, dispatch] = useContext(DataContext);
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserDate({ ...userData, [name]: value });
+    dispatch({ type: "NOTIFY", payload: {} });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errMsg = valid(name, email, password, confirm_password);
-    if (errMsg) console.log(errMsg);
+    if (errMsg) return dispatch({ type: "NOTIFY", payload: { error: errMsg } });
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
+    const res = await postData("auth/register", userData);
+    if (res.err)
+      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+    console.log(res);
   };
   return (
     <div>
