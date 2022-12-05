@@ -16,7 +16,7 @@ export default function register() {
   const [userData, setUserDate] = useState(initialState);
   const { name, email, password, confirm_password } = userData;
 
-  const [state, dispatch] = useContext(DataContext);
+  const { state, dispatch } = useContext(DataContext);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;

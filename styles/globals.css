@@ -24,3 +24,6 @@ a {
     background: black;
   }
 }
+
+/*---------------------- Loading ----------------*/
+@import url("./loading.css");
